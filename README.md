@@ -41,5 +41,5 @@ Pages**, or any static host. No build step.
 
 ## Notes
 - Fonts: Fraunces (display) + Inter (UI), loaded from Google Fonts.
-- Smooth scroll via Lenis (vendored locally at `js/lenis.min.js`).
+- Native browser scrolling; subtle scroll-reveal fade-ins on section entry.
 - Fully responsive; honors `prefers-reduced-motion`.

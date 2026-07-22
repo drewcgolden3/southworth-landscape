@@ -81,6 +81,8 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0;
 .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto;
   padding-inline: var(--pad-x); }
 .section { padding-block: var(--section); }
+/* offset anchor jumps so section tops clear the fixed header */
+section[id], #top { scroll-margin-top: 84px; }
 
 .eyebrow {
   display: inline-flex; align-items: center; gap: .7em;
@@ -336,8 +338,8 @@ body.menu-open .menu-btn span::after  { top: 0; transform: rotate(-45deg); }
 .about { position: relative; }
 .about__band { position: relative; min-height: clamp(420px, 60vh, 640px);
   display: flex; align-items: center; overflow: hidden; color: var(--on-deep); isolation: isolate; }
-.about__band img { position: absolute; inset: 0; width: 100%; height: 118%; top: -9%;
-  object-fit: cover; z-index: -2; will-change: transform; }
+.about__band img { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: -2; }
 .about__band::after { content: ""; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(90deg, rgba(12,17,12,.88) 0%, rgba(12,17,12,.6) 45%, rgba(12,17,12,.25) 100%); }
 .about__card { max-width: 46ch; }

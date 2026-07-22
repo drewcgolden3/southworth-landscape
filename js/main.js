@@ -102,28 +102,10 @@
     $$("#nav a").forEach(function (a) { a.addEventListener("click", closeMenu); });
   }
 
-  /* ---------------------------------------------- Lenis smooth scroll ----- */
-  var lenis = null;
-  if (!reduce && typeof Lenis !== "undefined") {
-    lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, smoothWheel: true });
-    window.__lenis = lenis;
-    var raf = function (t) { lenis.raf(t); requestAnimationFrame(raf); };
-    requestAnimationFrame(raf);
-    lenis.on("scroll", function () { onScrollHeader(); parallax(); });
-    // Anchor links routed through Lenis for a smooth, eased jump
-    $$('a[href^="#"]').forEach(function (a) {
-      a.addEventListener("click", function (e) {
-        var id = a.getAttribute("href");
-        if (id.length < 2) return;
-        var el = document.querySelector(id);
-        if (!el) return;
-        e.preventDefault();
-        lenis.scrollTo(el, { offset: -70, duration: 1.2, easing: function (x){ return 1 - Math.pow(1 - x, 4); } });
-      });
-    });
-  } else {
-    window.addEventListener("scroll", function () { onScrollHeader(); parallax(); }, { passive: true });
-  }
+  /* ------------------------------------------------ scroll (native) ------- */
+  // Plain native scrolling — no momentum/inertia. Anchor jumps use the CSS
+  // scroll-behavior + scroll-margin-top defined in the stylesheet.
+  window.addEventListener("scroll", onScrollHeader, { passive: true });
 
   /* ------------------------------------------------------- scroll reveal -- */
   var revealEls = $$("[data-reveal], [data-reveal-stagger] > *");
@@ -150,23 +132,6 @@
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     revealEls.forEach(function (el) { io.observe(el); });
   }
-
-  /* ------------------------------------------------------------ parallax -- */
-  var pImg = $("[data-parallax]");
-  var heroVid = $(".hero__media");
-  function parallax() {
-    if (reduce) return;
-    var y = window.scrollY;
-    if (heroVid && y < window.innerHeight) heroVid.style.transform = "translateY(" + (y * 0.15) + "px)";
-    if (pImg) {
-      var r = pImg.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < window.innerHeight) {
-        var prog = (window.innerHeight - r.top) / (window.innerHeight + r.height);
-        pImg.style.transform = "translateY(" + ((prog - 0.5) * 9) + "%)";
-      }
-    }
-  }
-  parallax();
 
   /* --------------------------------------------------------------- form --- */
   var form = $("#quoteForm");
