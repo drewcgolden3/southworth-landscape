@@ -1,7 +1,9 @@
 # Southworth Landscape Design & Construction — Website
 
-A premium single-page marketing site with a full-bleed (muted, looping) hero video,
-smooth momentum scrolling, scroll-reveal animations, and a "Request a Free Quote" form.
+A premium marketing site with a full-bleed (muted, looping) hero video, native
+scrolling, and scroll-reveal animations. Two pages:
+- `index.html` — the main marketing page.
+- `quote.html` — the dedicated "Request a Free Quote" page (all quote buttons link here).
 
 ## Edit everything in one place: `config.js`
 - **Contact** — phone, email, location, service area

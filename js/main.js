@@ -54,11 +54,11 @@
   // Contact + footer from config
   var c = CFG.contact || {}, soc = CFG.social || {};
   if (c.phone) {
-    var pl = $("#phoneLink"), pt = $("#phoneText");
-    if (pl) pl.href = c.phoneHref || ("tel:" + c.phone.replace(/[^0-9+]/g, ""));
-    if (pt) pt.textContent = c.phone;
+    var phoneHref = c.phoneHref || ("tel:" + c.phone.replace(/[^0-9+]/g, ""));
+    $$(".phone-link").forEach(function (a) { a.href = phoneHref; });
+    $$(".phone-text").forEach(function (t) { t.textContent = c.phone; });
   }
-  if (c.location) { var lt = $("#locText"); if (lt) lt.textContent = c.location; }
+  if (c.location) $$(".loc-text").forEach(function (t) { t.textContent = c.location; });
 
   var footContact = $("#footContact");
   if (footContact) {
